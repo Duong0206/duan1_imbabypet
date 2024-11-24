@@ -1,5 +1,9 @@
 <?php 
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
@@ -17,4 +21,34 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Trang chủ
     '/'                 => (new HomeController())->index(),
+    'productDetail'    => (new HomeController())->productDetail($_GET['MaSP']),
+    'cart'              => (new HomeController())->cart(),
 };
+
+
+
+
+
+
+
+// /admin
+//     /controller
+//     /model
+//     /views
+//     /index
+// /assets(đây là forder của template tôi muốn dùng)
+//     /assets
+//     /css
+//     /images
+//     /js
+//     /index.html
+// /commons
+// /controllers
+// /models
+// /uploads
+// /views(chưa có gì)
+//     /includes
+//     /layouts
+//     /pages
+//     /templates
+// /index

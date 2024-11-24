@@ -17,7 +17,7 @@ function uploadFile($file) {
         $fileName = uniqid() . '-' . pathinfo($file['name'], PATHINFO_FILENAME) . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
         
         // Đường dẫn lưu file
-        $uploadDir = __DIR__ . '/../assets/images/'; // Đường dẫn tuyệt đối đến admin/assets/images
+        $uploadDir = __DIR__ . '/../images/'; // Đường dẫn tuyệt đối đến admin/assets/images
         $uploadFilePath = $uploadDir . $fileName;
 
         // Kiểm tra quyền ghi thư mục
@@ -34,7 +34,7 @@ function uploadFile($file) {
 
         // Di chuyển file tải lên vào thư mục đích
         if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
-            return 'assets/images/' . $fileName; // Trả về đường dẫn tương đối cho ảnh
+            return 'images/' . $fileName; // Trả về đường dẫn tương đối cho ảnh
         } else {
             throw new Exception("Không thể tải lên tệp.");
         }
