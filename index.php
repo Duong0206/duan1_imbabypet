@@ -4,26 +4,53 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Require file Common
-require_once './commons/env.php'; // Khai báo biến môi trường
-require_once './commons/function.php'; // Hàm hỗ trợ
+session_start();
 
-// Require toàn bộ file Controllers
+require_once './commons/env.php';
+require_once './commons/function.php';
 require_once './controllers/HomeController.php';
+require_once './controllers/AuthController.php';
 
-// Require toàn bộ file Models
-
-// Route
 $act = $_GET['act'] ?? '/';
-
-// Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
+$authController = new AuthController();
+$homeController = new HomeController();
 
 match ($act) {
     // Trang chủ
-    '/'                 => (new HomeController())->index(),
-    'productDetail'    => (new HomeController())->productDetail($_GET['MaSP']),
-    'cart'              => (new HomeController())->cart(),
+    '/'                 => $homeController->index(),
+
+    // Trang chi tiết sản phẩm
+    'productDetail'     => $homeController->productDetail($_GET['MaSP']),
+
+    // Trang giỏ hàng (bắt buộc đăng nhập)
+    'cart'              => $homeController->cart(),
+
+    // Hiển thị trang đăng nhập
+    'showLogin'         => $authController->showLogin(),
+
+    // Xử lý đăng nhập
+    'login'             => ($_SERVER['REQUEST_METHOD'] === 'POST') 
+                            ? $authController->login() 
+                            : $authController->showLogin(),
+
+    // Đăng xuất
+    'logout'            => $authController->logout(),
+
+    'addToCart'         => $homeController->addToCart(),
+
+    'remove-cart'       => $homeController->removeCart(),
+
+    'showCheckout'          => $homeController->showCheckout(),
+
+    
+
+
+    // Mặc định
+    default             => function () {
+        echo "404 - Không tìm thấy trang.";
+    }
 };
+
 
 
 

@@ -83,7 +83,7 @@
     <div class="container">
       <nav class="main-menu d-flex navbar navbar-expand-lg ">
 
-        <div class="d-flex d-lg-none align-items-end mt-3">
+        <!-- <div class="d-flex d-lg-none align-items-end mt-3">
           <ul class="d-flex justify-content-end list-unstyled m-0">
             <li>
               <a href="account.html" class="mx-3">
@@ -115,7 +115,7 @@
             </li>
           </ul>
 
-        </div>
+        </div> -->
 
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar">
@@ -178,12 +178,12 @@
             <div class="d-none d-lg-flex align-items-end">
               <ul class="d-flex justify-content-end list-unstyled m-0">
                 <li>
-                  <a href="index.html" class="mx-3">
+                  <a href="?act=login" class="mx-3">
                     <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                   </a>
                 </li>
                 <li>
-                  <a href="index.html" class="mx-3">
+                  <a href="?act=logout" class="mx-3">
                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                   </a>
                 </li>

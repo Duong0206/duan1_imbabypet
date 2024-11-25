@@ -158,7 +158,7 @@
     <div class="swiper-slide">
       <div class="card position-relative">
         <a href="?act=productDetail&MaSP=<?php echo $product['MaSP']; ?>">
-          <img src="admin/<?php echo $product['HinhAnh']; ?>" class="img-fluid rounded-4" alt="<?= $product['TenSP']; ?>">
+          <img style="width: 300px; height: 300px" src="admin/<?php echo $product['HinhAnh']; ?>" class="img-fluid rounded-4" alt="<?= $product['TenSP']; ?>">
         </a>
         <div class="card-body p-0">
           <a href="single-product.php?id=<?= $product['MaSP']; ?>">
@@ -222,7 +222,7 @@
       ?>
       <div class="item <?php echo $productClass; ?> col-md-4 col-lg-3 my-4">
         <div class="card position-relative">
-          <a href="single-product.php?MaSP=<?php echo $row['MaSP']; ?>"><img src="admin/<?php echo $row['HinhAnh']; ?>" class="img-fluid rounded-4" alt="image"></a>
+          <a href="?act=productDetail&MaSP=<?php echo $row['MaSP']; ?>"><img style="width: 300px; height: 300px" src="admin/<?php echo $row['HinhAnh']; ?>" class="img-fluid rounded-4" alt="image"></a>
           <div class="card-body p-0">
             <a href="single-product.php?MaSP=<?php echo $row['MaSP']; ?>">
               <h3 class="card-title pt-4 m-0"><?php echo $row['TenSP']; ?></h3>

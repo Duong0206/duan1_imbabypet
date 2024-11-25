@@ -24,8 +24,10 @@
                 <div class="d-flex align-items-center mt-4">
                     <h4 class="star-rating" style="padding-right: 10px;">Số lượng:  </h4>
                     <input type="number" class="form-control me-2" value="1" min="1" style="width: 80px; height: 65px;">
-                    <button class="btn btn-primary me-2">Thêm vào giỏ hàng</button>
-                    <button class="btn btn-success">Mua ngay</button>
+                </div>
+                <div class="d-flex mt-4 align-items-center">
+                  <a href="?act=addToCart&MaSP=<?php echo $product['MaSP']; ?>" class="btn btn-warning btn-lg">Thêm Vào Giỏ Hàng</a>
+                  <button class="btn btn-danger btn-lg ms-3">Mua ngay</button>
                 </div>
             </div>
         </div>

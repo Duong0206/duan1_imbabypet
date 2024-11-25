@@ -21,3 +21,16 @@ function connectDB() {
         echo ("Connection failed: " . $e->getMessage());
     }
 }
+
+function isLoggedIn() {
+    if (isset($_SESSION['MaAdmin']) && is_numeric($_SESSION['MaAdmin'])) {
+        // Kết nối DB
+        $conn = connectDB();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM admin WHERE MaAdmin = :MaAdmin");
+        $stmt->bindParam(':MaAdmin', $_SESSION['MaAdmin'], PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchColumn() > 0; // Nếu tồn tại, trả về true
+    }
+    return false; // Không tồn tại session hoặc không hợp lệ
+}
