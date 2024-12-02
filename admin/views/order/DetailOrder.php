@@ -23,7 +23,7 @@ require_once "./views/layouts/includes/header_admin.php";
                         <div class="mb-3">
                             <label for="TinhTrangDH" class="form-label"><strong>Tình trạng đơn hàng:</strong></label>
                             <select class="form-select" name="TinhTrangDH" id="TinhTrangDH">
-                                <option value="pending" <?= $order['TinhTrangDH'] == 'pending' ? 'selected' : '' ?>>Chờ xử lý</option>
+                                <option value="pending" <?= $order['TinhTrangDH'] == 'pending' ? 'selected' : '' ?>>Đang Xử lý</option>
                                 <option value="shipping" <?= $order['TinhTrangDH'] == 'shipping' ? 'selected' : '' ?>>Đang giao</option>
                                 <option value="delivered" <?= $order['TinhTrangDH'] == 'delivered' ? 'selected' : '' ?>>Đã giao</option>
                                 <option value="cancel" <?= $order['TinhTrangDH'] == 'cancel' ? 'selected' : '' ?>>Hủy</option>

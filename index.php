@@ -10,10 +10,14 @@ require_once './commons/env.php';
 require_once './commons/function.php';
 require_once './controllers/HomeController.php';
 require_once './controllers/AuthController.php';
+require_once './controllers/OrderController.php';
+require_once './controllers/CartController.php';
 
 $act = $_GET['act'] ?? '/';
 $authController = new AuthController();
 $homeController = new HomeController();
+$orderController = new OrderController();
+$cartController = new CartController();
 
 match ($act) {
     // Trang chủ
@@ -23,7 +27,7 @@ match ($act) {
     'productDetail'     => $homeController->productDetail($_GET['MaSP']),
 
     // Trang giỏ hàng (bắt buộc đăng nhập)
-    'cart'              => $homeController->cart(),
+    'cart'              => $cartController->cart(),
 
     // Hiển thị trang đăng nhập
     'showLogin'         => $authController->showLogin(),
@@ -36,12 +40,25 @@ match ($act) {
     // Đăng xuất
     'logout'            => $authController->logout(),
 
-    'addToCart'         => $homeController->addToCart(),
+    'addToCart'         => $cartController->addToCart(),
 
-    'remove-cart'       => $homeController->removeCart(),
+    'remove-cart'       => $cartController->removeCart(),
 
-    'showCheckout'          => $homeController->showCheckout(),
 
+    //đặt hàg
+    'showFormOrder'          => $orderController->showFormOrder(),
+
+    'processPayment'        => $orderController->processPayment(),
+
+    'listOrders'    => $orderController->listOrders(),
+
+    'viewOrderDetail' => $orderController->orderDetail($_GET['MaDH']),
+
+
+
+
+    //tìm kiếm
+    'search'            => $homeController->search(),
     
 
 
@@ -50,32 +67,3 @@ match ($act) {
         echo "404 - Không tìm thấy trang.";
     }
 };
-
-
-
-
-
-
-
-
-// /admin
-//     /controller
-//     /model
-//     /views
-//     /index
-// /assets(đây là forder của template tôi muốn dùng)
-//     /assets
-//     /css
-//     /images
-//     /js
-//     /index.html
-// /commons
-// /controllers
-// /models
-// /uploads
-// /views(chưa có gì)
-//     /includes
-//     /layouts
-//     /pages
-//     /templates
-// /index

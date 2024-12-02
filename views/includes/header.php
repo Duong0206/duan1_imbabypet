@@ -40,7 +40,7 @@
 
         <div class="col-sm-4 col-lg-3 text-center text-sm-start">
           <div class="main-logo">
-            <a href="index.html">
+            <a href="?act=/">
               <img src="images/logo-babypet.png" alt="logo" class="img-fluid">
             </a>
           </div>
@@ -48,13 +48,15 @@
 
         <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
           <div class="search-bar border rounded-2 px-3 border-dark-subtle">
-            <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-              <input type="text" class="form-control border-0 bg-transparent"
+            <form id="search" class="text-center d-flex align-items-center" action="?act=search" method="GET">
+              <input type="text" class="form-control border-0 bg-transparent" name="keyword"
                 placeholder="Tìm kiếm mọi thứ cho pet của bạn ..." />
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
-              </svg>
+                <button type="submit" class="btn btn-transparent border-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                      d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
+                  </svg>
+                </button>
             </form>
           </div>
         </div>
@@ -171,7 +173,7 @@
                 <a href="index.html" class="nav-link">Liên Hệ</a>
               </li>
               <li class="nav-item">
-                <a href="index.html" class="nav-link">Thêm</a>
+                <a href="?act=listOrders" class="nav-link">Đơn Hàng</a>
               </li>
             </ul>
 
@@ -201,7 +203,7 @@
             </div>
 
           </div>
-
+          
         </div>
 
       </nav>

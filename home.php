@@ -63,7 +63,7 @@
       </symbol>
 
     </defs>
-  </svg>
+</svg>
 
   <!-- banner -->
   <section id="banner" style="background: #F9F3EC;">
@@ -166,8 +166,8 @@
           </a>
           <h3 class="secondary-font text-primary"><?= number_format($product['DonGiaBan'], 0, ',', '.') ?> VND</h3>
           <div class="d-flex flex-wrap mt-3">
-            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-              <h5 class="text-uppercase m-0">Add to Cart</h5>
+            <a href="?act=addToCart&id=<?= $product['MaSP']; ?>" class="btn-cart me-3 px-4 pt-3 pb-3">
+              <h5 class="text-uppercase m-0">Thêm Giỏ Hàng</h5>
             </a>
             <a href="#" class="btn-wishlist px-4 pt-3 ">
               <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>

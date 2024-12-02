@@ -29,56 +29,33 @@ class ProductModel
         }
     }
 
-    public function createOrder($MaKH, $TongTien)
+    public function getProductsByIds($productIds)
     {
-        try {
-            $sql = "INSERT INTO DonDatHang (MaKH, NgayDat, TinhTrangDH, DaThanhToan, TongTien) 
-                    VALUES (:MaKH, NOW(), 'Đang xử lý', 0, :TongTien)";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':MaKH', $MaKH, PDO::PARAM_INT);
-            $stmt->bindParam(':TongTien', $TongTien, PDO::PARAM_INT);
-            $stmt->execute();
-            return $this->conn->lastInsertId(); // Lấy ID đơn hàng vừa tạo
-        } catch (PDOException $e) {
-            echo "Lỗi tạo đơn hàng: " . $e->getMessage();
-            return false;
-        }
+        // Chuyển mảng IDs thành chuỗi để sử dụng trong câu truy vấn
+        $placeholders = implode(',', array_fill(0, count($productIds), '?'));
+
+        $sql = "SELECT * FROM SanPham WHERE MaSP IN ($placeholders)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($productIds); // Truyền mảng IDs vào câu truy vấn
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-    // Thêm chi tiết giỏ hàng
-    public function addOrderDetail($MaDH, $MaSP, $SoLuong, $DonGia)
-    {
-        try {
-            $sql = "INSERT INTO ChiTietGioHang (MaGioHang, MaSP, SoLuong, DonGia) 
-                    VALUES (:MaDH, :MaSP, :SoLuong, :DonGia)";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':MaDH', $MaDH, PDO::PARAM_INT);
-            $stmt->bindParam(':MaSP', $MaSP, PDO::PARAM_INT);
-            $stmt->bindParam(':SoLuong', $SoLuong, PDO::PARAM_INT);
-            $stmt->bindParam(':DonGia', $DonGia, PDO::PARAM_INT);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo "Lỗi thêm chi tiết giỏ hàng: " . $e->getMessage();
-        }
-    }
-
-    // Cập nhật tổng tiền đơn hàng
-    public function updateOrderTotal($MaDH, $TongTien)
-    {
-        try {
-            $sql = "UPDATE DonDatHang SET TongTien = :TongTien WHERE MaDH = :MaDH";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':TongTien', $TongTien, PDO::PARAM_INT);
-            $stmt->bindParam(':MaDH', $MaDH, PDO::PARAM_INT);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo "Lỗi cập nhật tổng tiền: " . $e->getMessage();
-        }
-    }
-
-
-
     
+
+    public function searchProducts($keyword){
+        
+        $sql = "SELECT * FROM  SanPham WHERE TenSP LIKE :keyword OR description LIKE :keyword";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':keyword', "%$keyword%", PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+
+
+
+    }
     
 }
